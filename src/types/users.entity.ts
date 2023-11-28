@@ -1,3 +1,5 @@
+import { JwtPayload } from 'jsonwebtoken';
+
 export enum UserRole {
   DELIVERY = 'delivery',
   ADMIN = 'admin',
@@ -26,3 +28,7 @@ export class User {
   day: UserDay.PENDING;
   img: string;
 }
+
+type UserJWT = Pick<User, 'id' | 'email'>;
+
+export type UserPayload = JwtPayload & UserJWT;
