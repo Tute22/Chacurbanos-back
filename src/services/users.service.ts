@@ -116,8 +116,6 @@ export class UsersService {
             id: user.id,
             email: user.email,
             role: user.role,
-            status: user.status,
-            day: user.day,
         }
         const token = this.jwtService.generateToken(payload)
 

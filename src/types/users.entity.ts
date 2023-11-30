@@ -30,6 +30,4 @@ export type UserPayload = {
     id: number
     email: string
     role: UserRole
-    status: UserStatus
-    day: UserDay
 }
