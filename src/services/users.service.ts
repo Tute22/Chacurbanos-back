@@ -14,11 +14,55 @@ export class UsersService {
     private users: User[] = [
         {
             id: 1,
-            name: 'Pablo',
-            lastName: 'Hernandez',
-            email: 'pablo@gmail.com',
+            name: 'Fiama',
+            lastName: 'Talavera',
+            email: 'fiama@gmail.com',
             password:
-                '$2b$10$4.TpONrHb5USgrMf780fPu335/WEY5Gz21mPDO7PJ6sn2JWEqeLwq',
+                '$2b$10$dVrVNWmRFC1sHpoASN1bJe9cAbwmSlxZN7EAYWRzrOr8cR745EiUa',
+            role: UserRole.ADMIN,
+            status: UserStatus.ENABLED,
+            day: UserDay.NULL,
+        },
+        {
+            id: 2,
+            name: 'Agustin',
+            lastName: 'Sandoval',
+            email: 'agustin@gmail.com',
+            password:
+                '$2b$10$ehoq9wY2Nay1DI.5blJYoee63nX5VgdroTO/7AZte.MhfuTYVykw.',
+            role: UserRole.DELIVERY,
+            status: UserStatus.ENABLED,
+            day: UserDay.PENDING,
+        },
+        {
+            id: 3,
+            name: 'Martin',
+            lastName: 'Ferrando',
+            email: 'martin@gmail.com',
+            password:
+                '$2b$10$yrDT7H9ocV43NBYAolRop.QJgA1u7CZ.nUpmKQKDO1SHbi2e2KzaK',
+            role: UserRole.DELIVERY,
+            status: UserStatus.ENABLED,
+            day: UserDay.PENDING,
+        },
+        {
+            id: 4,
+            name: 'Isidro',
+            lastName: 'Molina',
+            email: 'isidro@gmail.com',
+            password:
+                '$2b$10$RVDT6uUkqjnwJoMMO2YziuXm290BjFPeUTQWKNwwEThSw2HZiH212',
+            role: UserRole.DELIVERY,
+            status: UserStatus.ENABLED,
+            day: UserDay.PENDING,
+        },
+        {
+            id: 5,
+            name: 'Gastón',
+            lastName: 'Rabinovich',
+            email: 'gaston@gmail.com',
+            password:
+                '$2b$10$TioUa8fbUCP5tBZV7tJGwOW.3uTpm7kqkJcspccXMXcZqs2.LDIwC',
             role: UserRole.DELIVERY,
             status: UserStatus.ENABLED,
             day: UserDay.PENDING,
