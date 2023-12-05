@@ -1,7 +1,15 @@
-import { Controller, Get, Post, Body, Param } from '@nestjs/common'
-import { UsersService } from '../services/users.service'
-import { JWTtoken } from 'src/config/token'
-import { CreateUserDto } from 'src/types/users.dto'
+import {
+    Controller,
+    Get,
+    Post,
+    Body,
+    Param,
+    Patch,
+    ParseIntPipe,
+} from '@nestjs/common'
+import { UsersService } from './users.service'
+import { JWTtoken } from './users.token'
+import { CreateUserDto } from 'src/users/users.dto'
 
 @Controller('users')
 export class UsersController {
@@ -38,6 +46,20 @@ export class UsersController {
             return { decodedToken }
         } else {
             return { message: 'Token inválido' }
+        }
+    }
+
+    @Patch(':id')
+    updateUser(
+        @Param('id', ParseIntPipe) userId: number,
+        @Body() updatedUser: Partial<CreateUserDto>
+    ) {
+        const result = this.usersService.updateUser(userId, updatedUser)
+
+        if (result) {
+            return { user: result }
+        } else {
+            return { message: 'Usuario no encontrado' }
         }
     }
 }

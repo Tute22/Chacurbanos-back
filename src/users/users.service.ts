@@ -3,8 +3,9 @@ import {
     NotFoundException,
     UnauthorizedException,
 } from '@nestjs/common'
-import { User, UserRole, UserStatus, UserDay } from '../types/users.entity'
-import { JWTtoken } from 'src/config/token'
+import { User, UserRole, UserStatus, UserDay } from './users.entity'
+import { JWTtoken } from './users.token'
+import { CreateUserDto } from './users.dto'
 import * as bcrypt from 'bcrypt'
 
 @Injectable()
@@ -120,5 +121,18 @@ export class UsersService {
         const token = this.jwtService.generateToken(payload)
 
         return { user, token }
+    }
+
+    updateUser(
+        userId: number,
+        updatedUser: Partial<CreateUserDto>
+    ): User | null {
+        const userToUpdate = this.users.find((u) => u.id === userId)
+
+        Object.assign(userToUpdate, updatedUser)
+
+        this.users[userId - 1] = userToUpdate
+
+        return userToUpdate
     }
 }
