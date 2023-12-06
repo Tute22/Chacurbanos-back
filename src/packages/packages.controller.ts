@@ -5,7 +5,6 @@ import {
     Body,
     Param,
     Patch,
-    ParseIntPipe,
     Delete,
 } from '@nestjs/common'
 import { CreatePackagesDto } from './packages.dto'
@@ -22,17 +21,12 @@ export class PackagesController {
 
     @Post()
     createNewPackage(@Body() newPackage: CreatePackagesDto) {
-        return this.packagesService.createPackage(
-            newPackage.address,
-            newPackage.to,
-            newPackage.weight,
-            newPackage.date
-        )
+        return this.packagesService.createPackage(newPackage)
     }
 
-    @Patch(':id')
+    @Patch(':_id')
     updatePackage(
-        @Param('id', ParseIntPipe) packageId: number,
+        @Param('_id') packageId: string,
         @Body() updatedPackage: Partial<CreatePackagesDto>
     ) {
         const result = this.packagesService.updatePackage(
@@ -41,18 +35,18 @@ export class PackagesController {
         )
 
         if (result) {
-            return { package: result }
+            return { package: 'Paquete actualizado' }
         } else {
             return { message: 'Paquete no encontrado' }
         }
     }
 
-    @Delete(':id')
-    deletePackage(@Param('id', ParseIntPipe) packageId: number) {
+    @Delete(':_id')
+    deletePackage(@Param('_id') packageId: string) {
         const result = this.packagesService.deletePackage(packageId)
 
         if (result) {
-            return { package: result }
+            return { message: 'Paquete eliminado' }
         } else {
             return { message: 'Paquete no encontrado' }
         }

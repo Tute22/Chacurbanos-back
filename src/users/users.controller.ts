@@ -1,12 +1,4 @@
-import {
-    Controller,
-    Get,
-    Post,
-    Body,
-    Param,
-    Patch,
-    ParseIntPipe,
-} from '@nestjs/common'
+import { Controller, Get, Post, Body, Param, Patch } from '@nestjs/common'
 import { UsersService } from './users.service'
 import { JWTtoken } from './users.token'
 import { CreateUserDto } from 'src/users/users.dto'
@@ -25,12 +17,7 @@ export class UsersController {
 
     @Post()
     createNewUser(@Body() newUser: CreateUserDto) {
-        return this.usersService.createUser(
-            newUser.name,
-            newUser.lastName,
-            newUser.email,
-            newUser.password
-        )
+        return this.usersService.createUser(newUser)
     }
 
     @Post('login')
@@ -49,15 +36,15 @@ export class UsersController {
         }
     }
 
-    @Patch(':id')
+    @Patch(':_id')
     updateUser(
-        @Param('id', ParseIntPipe) userId: number,
+        @Param('_id') userId: string,
         @Body() updatedUser: Partial<CreateUserDto>
     ) {
         const result = this.usersService.updateUser(userId, updatedUser)
 
         if (result) {
-            return { user: result }
+            return { message: 'Usuario actualizado' }
         } else {
             return { message: 'Usuario no encontrado' }
         }

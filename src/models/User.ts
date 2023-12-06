@@ -1,12 +1,28 @@
 import { Prop, Schema, SchemaFactory } from '@nestjs/mongoose'
+import { UserRole, UserStatus, UserDay } from 'src/users/users.entity'
 
 @Schema()
 export class User {
     @Prop()
-    nombre: string
+    name: string
 
     @Prop()
-    valor: number
+    lastName: string
+
+    @Prop()
+    email: string
+
+    @Prop()
+    password: string
+
+    @Prop({ default: UserRole.DELIVERY })
+    role: UserRole
+
+    @Prop({ default: UserStatus.ENABLED })
+    status: UserStatus
+
+    @Prop({ default: UserDay.PENDING })
+    day: UserDay
 }
 
 export const UserSchema = SchemaFactory.createForClass(User)
