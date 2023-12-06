@@ -9,21 +9,20 @@ export enum UserStatus {
 }
 
 export enum UserDay {
-    NULL = null,
     PENDING = 'pending',
     IN_PROGRESS = 'in progress',
     FINISH = 'finish',
 }
 
 export class User {
-    id: number
+    id: string
     name: string
     lastName: string
     email: string
     password: string
     role: UserRole.DELIVERY | UserRole.ADMIN
     status: UserStatus.ENABLED | UserStatus.DISABLED
-    day: UserDay.NULL | UserDay.PENDING | UserDay.IN_PROGRESS | UserDay.FINISH
+    day: UserDay.PENDING | UserDay.IN_PROGRESS | UserDay.FINISH
 }
 
 export type UserPayload = {

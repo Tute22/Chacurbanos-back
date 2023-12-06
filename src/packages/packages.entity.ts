@@ -1,14 +1,17 @@
 export enum PackageStatus {
-    NULL = null,
     PENDING = 'pending',
+    IN_PROGRESS = 'in progress',
     DELIVERED = 'delivered',
 }
 
 export class Package {
-    id: number
+    id: string
     address: string
     to: string
     weight: string
     date: Date
-    status: PackageStatus.NULL | PackageStatus.PENDING | PackageStatus.DELIVERED
+    status:
+        | PackageStatus.PENDING
+        | PackageStatus.IN_PROGRESS
+        | PackageStatus.DELIVERED
 }
