@@ -21,6 +21,16 @@ export class UsersService {
         return await this.userModel.find().exec()
     }
 
+    async getUsersById(userId: string): Promise<User | null> {
+        const userResult = await this.userModel.findById(userId).exec()
+
+        if (!userResult) {
+            throw new NotFoundException('Usuario no encontrado')
+        }
+
+        return userResult
+    }
+
     async createUser(newUser: CreateUserDto): Promise<User> {
         const hashedPassword = bcrypt.hashSync(newUser.password, 10)
 
