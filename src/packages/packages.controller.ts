@@ -6,6 +6,8 @@ import {
     Param,
     Patch,
     Delete,
+    HttpCode,
+    HttpStatus,
 } from '@nestjs/common'
 import { CreatePackagesDto } from './packages.dto'
 import { PackagesService } from './packages.service'
@@ -19,12 +21,19 @@ export class PackagesController {
         return this.packagesService.getAllPackages()
     }
 
+    @Get(':_id')
+    async getPackageById(@Param('_id') packageId: string) {
+        return this.packagesService.getPackageById(packageId)
+    }
+
     @Post()
+    @HttpCode(HttpStatus.CREATED)
     createNewPackage(@Body() newPackage: CreatePackagesDto) {
         return this.packagesService.createPackage(newPackage)
     }
 
     @Patch(':_id')
+    @HttpCode(HttpStatus.CREATED)
     updatePackage(
         @Param('_id') packageId: string,
         @Body() updatedPackage: Partial<CreatePackagesDto>
@@ -35,9 +44,9 @@ export class PackagesController {
         )
 
         if (result) {
-            return { package: 'Paquete actualizado' }
+            return result
         } else {
-            return { message: 'Paquete no encontrado' }
+            return { message: 'Package not found' }
         }
     }
 
@@ -46,9 +55,9 @@ export class PackagesController {
         const result = this.packagesService.deletePackage(packageId)
 
         if (result) {
-            return { message: 'Paquete eliminado' }
+            return { message: 'Package deleted' }
         } else {
-            return { message: 'Paquete no encontrado' }
+            return { message: 'Package not found' }
         }
     }
 }

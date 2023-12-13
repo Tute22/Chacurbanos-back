@@ -7,7 +7,7 @@ export class Package {
     address: string
 
     @Prop()
-    to: string
+    recipient: string
 
     @Prop()
     weight: string

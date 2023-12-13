@@ -14,6 +14,16 @@ export class PackagesService {
         return await this.packageModel.find().exec()
     }
 
+    async getPackageById(packageId: string): Promise<Package | null> {
+        const packageResult = await this.packageModel.findById(packageId).exec()
+
+        if (!packageResult) {
+            throw new NotFoundException('Paquete no encontrado')
+        }
+
+        return packageResult
+    }
+
     async createPackage(newPackage: CreatePackagesDto): Promise<Package> {
         const createdPackage = new this.packageModel({
             ...newPackage,

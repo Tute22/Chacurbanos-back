@@ -1,4 +1,13 @@
-import { Controller, Get, Post, Body, Param, Patch } from '@nestjs/common'
+import {
+    Controller,
+    Get,
+    Post,
+    Body,
+    Param,
+    Patch,
+    HttpCode,
+    HttpStatus,
+} from '@nestjs/common'
 import { UsersService } from './users.service'
 import { JWTtoken } from './users.token'
 import { CreateUserDto } from 'src/users/users.dto'
@@ -15,7 +24,13 @@ export class UsersController {
         return this.usersService.getAllUsers()
     }
 
+    @Get('user/:_id')
+    async getUsersById(@Param('_id') packageId: string) {
+        return this.usersService.getUsersById(packageId)
+    }
+
     @Post()
+    @HttpCode(HttpStatus.CREATED)
     createNewUser(@Body() newUser: CreateUserDto) {
         return this.usersService.createUser(newUser)
     }
@@ -30,13 +45,14 @@ export class UsersController {
         const decodedToken = this.jwtToken.validateToken(token)
 
         if (decodedToken) {
-            return { decodedToken }
+            return decodedToken
         } else {
             return { message: 'Token inválido' }
         }
     }
 
     @Patch(':_id')
+    @HttpCode(HttpStatus.CREATED)
     updateUser(
         @Param('_id') userId: string,
         @Body() updatedUser: Partial<CreateUserDto>
@@ -44,7 +60,7 @@ export class UsersController {
         const result = this.usersService.updateUser(userId, updatedUser)
 
         if (result) {
-            return { message: 'Usuario actualizado' }
+            return result
         } else {
             return { message: 'Usuario no encontrado' }
         }
