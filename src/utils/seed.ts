@@ -61,14 +61,14 @@ async function seed() {
     // Seed Packages
     const package1: CreatePackagesDto = {
         address: '123 Main St',
-        to: 'Alice',
+        recipient: 'Alice',
         weight: '5kg',
         date: new Date(),
     }
 
     const package2: CreatePackagesDto = {
         address: '456 Oak St',
-        to: 'Bob',
+        recipient: 'Bob',
         weight: '3kg',
         date: new Date(),
     }

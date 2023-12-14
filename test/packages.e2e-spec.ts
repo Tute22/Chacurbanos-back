@@ -2,9 +2,13 @@ import { Test, TestingModule } from '@nestjs/testing'
 import { INestApplication } from '@nestjs/common'
 import * as request from 'supertest'
 import { AppModule } from 'src/app.module'
+import { getModelToken } from '@nestjs/mongoose'
+import { Package } from 'src/models/Package'
+import { Model } from 'mongoose'
 
 describe('PackagesController', () => {
     let app: INestApplication
+    let mongooseModel: Model<Package>
 
     beforeEach(async () => {
         const moduleFixture: TestingModule = await Test.createTestingModule({
@@ -12,6 +16,7 @@ describe('PackagesController', () => {
         }).compile()
 
         app = moduleFixture.createNestApplication()
+        mongooseModel = moduleFixture.get(getModelToken('Package'))
         await app.init()
     })
 
@@ -79,6 +84,14 @@ describe('PackagesController', () => {
     })
 
     afterAll(async () => {
+        const testPackages = await mongooseModel
+            .find({ recipient: 'Juan Román Riquelme' })
+            .exec()
+
+        for (const testPackage of testPackages) {
+            await mongooseModel.findByIdAndDelete(testPackage._id).exec()
+        }
+
         await app.close()
     })
 })

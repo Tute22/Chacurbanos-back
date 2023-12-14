@@ -7,7 +7,7 @@ export enum PackageStatus {
 export class Package {
     id: string
     address: string
-    to: string
+    recipient: string
     weight: string
     date: Date
     status:

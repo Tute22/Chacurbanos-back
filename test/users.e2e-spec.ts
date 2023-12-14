@@ -2,9 +2,13 @@ import { Test, TestingModule } from '@nestjs/testing'
 import { INestApplication } from '@nestjs/common'
 import * as request from 'supertest'
 import { AppModule } from 'src/app.module'
+import { getModelToken } from '@nestjs/mongoose'
+import { User } from 'src/models/User'
+import { Model } from 'mongoose'
 
 describe('PackagesController', () => {
     let app: INestApplication
+    let mongooseModel: Model<User>
 
     beforeEach(async () => {
         const moduleFixture: TestingModule = await Test.createTestingModule({
@@ -12,6 +16,7 @@ describe('PackagesController', () => {
         }).compile()
 
         app = moduleFixture.createNestApplication()
+        mongooseModel = moduleFixture.get(getModelToken('User'))
         await app.init()
     })
 
@@ -88,6 +93,14 @@ describe('PackagesController', () => {
     })
 
     afterAll(async () => {
+        const testUsers = await mongooseModel
+            .find({ email: 'bestia@mail.com' })
+            .exec()
+
+        for (const testUser of testUsers) {
+            await mongooseModel.findByIdAndDelete(testUser._id).exec()
+        }
+
         await app.close()
     })
 })
