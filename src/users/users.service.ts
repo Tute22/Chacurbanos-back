@@ -8,7 +8,7 @@ import { Model } from 'mongoose'
 import { User, UserRole, UserStatus, UserDay } from './users.entity'
 import { JWTtoken } from './users.token'
 import { CreateUserDto } from './users.dto'
-import * as bcrypt from 'bcrypt'
+import * as bcrypt from 'bcryptjs'
 
 @Injectable()
 export class UsersService {
