@@ -1,5 +1,5 @@
 import { Prop, Schema, SchemaFactory } from '@nestjs/mongoose'
-import { PackageStatus } from 'src/packages/packages.entity'
+import { PackageStatus } from '../packages/packages.entity'
 
 @Schema()
 export class Package {

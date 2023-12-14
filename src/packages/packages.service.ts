@@ -1,5 +1,5 @@
 import { Injectable, NotFoundException } from '@nestjs/common'
-import { Package, PackageStatus } from 'src/packages/packages.entity'
+import { Package, PackageStatus } from './packages.entity'
 import { CreatePackagesDto } from './packages.dto'
 import { InjectModel } from '@nestjs/mongoose'
 import { Model } from 'mongoose'

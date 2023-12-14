@@ -5,7 +5,7 @@ import {
 } from '@nestjs/common'
 import { InjectModel } from '@nestjs/mongoose'
 import { Model } from 'mongoose'
-import { User, UserRole, UserStatus, UserDay } from './users.entity'
+import { User, UserStatus, UserDay } from './users.entity'
 import { JWTtoken } from './users.token'
 import { CreateUserDto } from './users.dto'
 import * as bcrypt from 'bcryptjs'
@@ -37,7 +37,6 @@ export class UsersService {
         const user = new this.userModel({
             ...newUser,
             password: hashedPassword,
-            role: UserRole.DELIVERY,
             status: UserStatus.ENABLED,
             day: UserDay.PENDING,
         })
