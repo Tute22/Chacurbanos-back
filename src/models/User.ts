@@ -1,5 +1,5 @@
 import { Prop, Schema, SchemaFactory } from '@nestjs/mongoose'
-import { UserRole, UserStatus, UserDay } from 'src/users/users.entity'
+import { UserRole, UserStatus, UserDay } from '../users/users.entity'
 
 @Schema()
 export class User {

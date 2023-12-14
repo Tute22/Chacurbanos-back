@@ -10,7 +10,7 @@ import {
 } from '@nestjs/common'
 import { UsersService } from './users.service'
 import { JWTtoken } from './users.token'
-import { CreateUserDto } from 'src/users/users.dto'
+import { CreateUserDto } from './users.dto'
 
 @Controller('users')
 export class UsersController {
