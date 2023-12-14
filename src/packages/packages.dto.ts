@@ -1,6 +1,6 @@
 export class CreatePackagesDto {
     address: string
-    to: string
+    recipient: string
     weight: string
     date: Date
 }
