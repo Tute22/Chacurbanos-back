@@ -12,8 +12,8 @@ export class Package {
     weight: string
     date: Date
     status:
-        | PackageStatus.PENDING
+        | PackageStatus.DISABLED
         | PackageStatus.IN_PROGRESS
         | PackageStatus.DELIVERED
-        | PackageStatus.DISABLED
+        | PackageStatus.PENDING
 }

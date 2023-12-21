@@ -27,7 +27,7 @@ export class PackagesService {
     async createPackage(newPackage: CreatePackagesDto): Promise<Package> {
         const createdPackage = new this.packageModel({
             ...newPackage,
-            status: PackageStatus.PENDING,
+            status: PackageStatus.DISABLED,
         })
 
         return await createdPackage.save()
