@@ -23,6 +23,7 @@ export class User {
     role: UserRole.DELIVERY | UserRole.ADMIN
     status: UserStatus.ENABLED | UserStatus.DISABLED
     day: UserDay.PENDING | UserDay.IN_PROGRESS | UserDay.FINISH
+    iconUrl: string
 }
 
 export type UserPayload = {

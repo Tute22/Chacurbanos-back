@@ -2,6 +2,7 @@ export enum PackageStatus {
     PENDING = 'pending',
     IN_PROGRESS = 'in progress',
     DELIVERED = 'delivered',
+    DISABLED = 'disabled',
 }
 
 export class Package {
@@ -14,4 +15,5 @@ export class Package {
         | PackageStatus.PENDING
         | PackageStatus.IN_PROGRESS
         | PackageStatus.DELIVERED
+        | PackageStatus.DISABLED
 }
