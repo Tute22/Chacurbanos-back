@@ -4,6 +4,9 @@ import { UserRole, UserStatus, UserDay } from '../users/users.entity'
 @Schema()
 export class User {
     @Prop()
+    iconUrl: string
+
+    @Prop()
     name: string
 
     @Prop()

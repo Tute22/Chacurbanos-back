@@ -15,7 +15,7 @@ export class Package {
     @Prop()
     date: string
 
-    @Prop({ default: PackageStatus.PENDING })
+    @Prop({ default: PackageStatus.DISABLED })
     status: PackageStatus
 }
 
