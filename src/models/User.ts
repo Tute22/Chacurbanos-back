@@ -26,6 +26,9 @@ export class User {
 
     @Prop({ default: UserDay.PENDING })
     day: UserDay
+
+    @Prop({ default: false })
+    declaration: boolean
 }
 
 export const UserSchema = SchemaFactory.createForClass(User)

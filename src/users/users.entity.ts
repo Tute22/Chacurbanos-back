@@ -24,6 +24,7 @@ export class User {
     status: UserStatus.ENABLED | UserStatus.DISABLED
     day: UserDay.PENDING | UserDay.IN_PROGRESS | UserDay.FINISH
     iconUrl: string
+    declaration: boolean
 }
 
 export type UserPayload = {
