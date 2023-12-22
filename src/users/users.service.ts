@@ -39,6 +39,7 @@ export class UsersService {
             password: hashedPassword,
             status: UserStatus.ENABLED,
             day: UserDay.PENDING,
+            declaration: newUser.declaration || false,
         })
 
         return await user.save()

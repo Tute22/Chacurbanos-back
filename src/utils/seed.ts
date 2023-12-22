@@ -18,6 +18,7 @@ async function seed() {
         email: 'agustin@gmail.com',
         password: '12345678',
         role: UserRole.DELIVERY,
+        declaration: false,
     }
 
     const user2: CreateUserDto = {
@@ -26,6 +27,7 @@ async function seed() {
         email: 'fiama@gmail.com',
         password: '12345678',
         role: UserRole.ADMIN,
+        declaration: true,
     }
 
     const user3: CreateUserDto = {
@@ -34,6 +36,7 @@ async function seed() {
         email: 'isidro@gmail.com',
         password: '12345678',
         role: UserRole.DELIVERY,
+        declaration: false,
     }
 
     const user4: CreateUserDto = {
@@ -42,6 +45,7 @@ async function seed() {
         email: 'martin@gmail.com',
         password: '12345678',
         role: UserRole.DELIVERY,
+        declaration: false,
     }
 
     const user5: CreateUserDto = {
@@ -50,6 +54,7 @@ async function seed() {
         email: 'gaston@gmail.com',
         password: '12345678',
         role: UserRole.DELIVERY,
+        declaration: false,
     }
 
     await usersService.createUser(user1)
