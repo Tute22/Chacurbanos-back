@@ -10,7 +10,7 @@ export class Package {
     recipient: string
 
     @Prop()
-    weight: string
+    weight: number
 
     @Prop()
     date: string

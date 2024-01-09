@@ -23,7 +23,7 @@ describe('PackagesController', () => {
     const newPackage = {
         address: 'Av Falsa 123, CABA',
         recipient: 'Juan Román Riquelme',
-        weight: '5kg',
+        weight: 5,
         date: new Date('2023-01-01T12:00:00Z'),
     }
 
