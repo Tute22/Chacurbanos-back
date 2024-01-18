@@ -5,6 +5,7 @@ import { PackagesService } from '../packages/packages.service'
 import { CreatePackagesDto } from '../packages/packages.dto'
 import { CreateUserDto } from '../users/users.dto'
 import { UserRole } from '../users/users.entity'
+import { runScheduledTask } from './scheduler'
 
 async function seed() {
     const app = await NestFactory.create(AppModule)
@@ -87,6 +88,8 @@ async function seed() {
     await packagesService.createPackage(package2)
 
     console.log('Seed completed.')
+
+    runScheduledTask()
 
     await app.close()
 }
