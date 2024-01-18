@@ -1,7 +1,7 @@
 import * as schedule from 'node-schedule'
 import { NestFactory } from '@nestjs/core'
-import { AppModule } from 'src/app.module'
-import { UsersService } from 'src/users/users.service'
+import { AppModule } from '../app.module'
+import { UsersService } from '../users/users.service'
 
 export async function runScheduledTask() {
     const app = await NestFactory.createApplicationContext(AppModule)
