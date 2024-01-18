@@ -11,7 +11,7 @@ import {
 } from '@nestjs/common'
 import { CreatePackagesDto } from './packages.dto'
 import { PackagesService } from './packages.service'
-import { ApiResponse, ApiTags, ApiBody } from '@nestjs/swagger'
+import { ApiResponse, ApiTags } from '@nestjs/swagger'
 
 @Controller('packages')
 @ApiTags('packages')
@@ -35,21 +35,6 @@ export class PackagesController {
 
     @Post()
     @ApiResponse({ status: 201, description: 'Creates a package.' })
-    @ApiBody({
-        description: 'Package creation example.',
-        type: CreatePackagesDto,
-        examples: {
-            default: {
-                summary: 'Body for package creation example.',
-                value: {
-                    address: 'Chaco 123',
-                    recipient: 'Pipa Sandoval',
-                    weight: 2.5,
-                    date: '2024-01-15',
-                },
-            },
-        },
-    })
     @HttpCode(HttpStatus.CREATED)
     createNewPackage(@Body() newPackage: CreatePackagesDto) {
         return this.packagesService.createPackage(newPackage)
@@ -59,18 +44,6 @@ export class PackagesController {
     @ApiResponse({
         status: 201,
         description: 'Updates a specific package by id and returns it.',
-    })
-    @ApiBody({
-        description: 'Package update example.',
-        type: CreatePackagesDto,
-        examples: {
-            default: {
-                summary: 'Body to update a package example.',
-                value: {
-                    weight: 5,
-                },
-            },
-        },
     })
     @HttpCode(HttpStatus.CREATED)
     updatePackage(
