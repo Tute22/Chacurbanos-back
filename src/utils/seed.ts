@@ -19,6 +19,7 @@ async function seed() {
         password: '12345678',
         role: UserRole.DELIVERY,
         declaration: false,
+        dateBadDeclaration: '',
     }
 
     const user2: CreateUserDto = {
@@ -27,7 +28,8 @@ async function seed() {
         email: 'fiama@gmail.com',
         password: '12345678',
         role: UserRole.ADMIN,
-        declaration: true,
+        declaration: false,
+        dateBadDeclaration: '',
     }
 
     const user3: CreateUserDto = {
@@ -37,6 +39,7 @@ async function seed() {
         password: '12345678',
         role: UserRole.DELIVERY,
         declaration: false,
+        dateBadDeclaration: '',
     }
 
     const user4: CreateUserDto = {
@@ -46,6 +49,7 @@ async function seed() {
         password: '12345678',
         role: UserRole.DELIVERY,
         declaration: false,
+        dateBadDeclaration: '',
     }
 
     const user5: CreateUserDto = {
@@ -55,6 +59,7 @@ async function seed() {
         password: '12345678',
         role: UserRole.DELIVERY,
         declaration: false,
+        dateBadDeclaration: '',
     }
 
     await usersService.createUser(user1)
@@ -82,6 +87,7 @@ async function seed() {
     await packagesService.createPackage(package2)
 
     console.log('Seed completed.')
+
     await app.close()
 }
 

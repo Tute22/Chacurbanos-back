@@ -85,4 +85,10 @@ export class UsersService {
 
         return await userToUpdate.save()
     }
+
+    async resetDeclarationStatusForAllUsers(): Promise<void> {
+        await this.userModel
+            .updateMany({}, { $set: { declaration: false } })
+            .exec()
+    }
 }
