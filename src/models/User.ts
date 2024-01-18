@@ -29,6 +29,9 @@ export class User {
 
     @Prop({ default: false })
     declaration: boolean
+
+    @Prop()
+    dateBadDeclaration: string
 }
 
 export const UserSchema = SchemaFactory.createForClass(User)
