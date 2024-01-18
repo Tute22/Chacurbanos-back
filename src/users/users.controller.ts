@@ -7,6 +7,7 @@ import {
     Patch,
     HttpCode,
     HttpStatus,
+    BadRequestException,
 } from '@nestjs/common'
 import { UsersService } from './users.service'
 import { JWTtoken } from './users.token'
@@ -39,8 +40,27 @@ export class UsersController {
         description: 'Creates and returns a new user.',
     })
     @HttpCode(HttpStatus.CREATED)
-    createNewUser(@Body() newUser: CreateUserDto) {
-        return this.usersService.createUser(newUser)
+    async createNewUser(@Body() newUser: CreateUserDto) {
+        try {
+            if (!newUser.email) {
+                throw new BadRequestException(
+                    'Campos incompletos. Por favor, proporcione toda la información requerida.'
+                )
+            }
+
+            const existingUser = await this.usersService.getUsersByEmail(
+                newUser.email
+            )
+
+            if (existingUser) {
+                throw new BadRequestException('Ese email ya esta registrado')
+            }
+
+            const createdUser = await this.usersService.createUser(newUser)
+            return createdUser
+        } catch (error) {
+            throw new BadRequestException(error.message)
+        }
     }
 
     @Post('login')

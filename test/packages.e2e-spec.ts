@@ -43,6 +43,22 @@ describe('PackagesController', () => {
         expect(postResponse.body).toBeInstanceOf(Object)
     })
 
+    //CASO NEGATIVO DE CREATE
+    it('/packages (POST) should return a status code 400 and an error message when attempting to create a new package without including the required fields.', async () => {
+        const postResponse = await request(app.getHttpServer())
+            .post('/packages')
+            .send({
+                address: 'Av Falsa 123, CABA',
+                weight: 5,
+                date: new Date('2023-01-01T12:00:00Z'),
+            })
+            .expect(400)
+
+        expect(postResponse.body.message).toEqual(
+            'Campos incompletos. Por favor, proporcione toda la información requerida.'
+        )
+    })
+
     it('/packages (GET):_id should return the specified package by id', async () => {
         const postResponse = await request(app.getHttpServer())
             .post('/packages')
@@ -65,9 +81,23 @@ describe('PackagesController', () => {
         const patchResponse = await request(app.getHttpServer())
             .patch(`/packages/${postResponse.body._id}`)
             .send({ address: 'José Hernández 166' })
-            .expect(201)
 
         expect(patchResponse.body.address).toEqual('José Hernández 166')
+    })
+
+    //CASO CONTRARIO DE UPDATE
+    it('/packages (PATCH):_id should throw an error trying to update the specified package by id', async () => {
+        const postResponse = await request(app.getHttpServer())
+            .post('/packages')
+            .send(newPackage)
+            .expect(201)
+
+        const patchResponse = await request(app.getHttpServer())
+            .patch(`/packages/${postResponse.body._id}`)
+            .send({ nameUser: 'José Hernández 166' })
+            .expect(400)
+
+        expect(patchResponse.body.message).toEqual('Propiedades Incorrectas')
     })
 
     it('/packages (DELETE):_id should delete the specified package by id', async () => {

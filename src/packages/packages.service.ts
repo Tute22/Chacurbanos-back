@@ -1,4 +1,8 @@
-import { Injectable, NotFoundException } from '@nestjs/common'
+import {
+    BadRequestException,
+    Injectable,
+    NotFoundException,
+} from '@nestjs/common'
 import { Package, PackageStatus } from './packages.entity'
 import { CreatePackagesDto } from './packages.dto'
 import { InjectModel } from '@nestjs/mongoose'
@@ -25,6 +29,17 @@ export class PackagesService {
     }
 
     async createPackage(newPackage: CreatePackagesDto): Promise<Package> {
+        if (
+            !newPackage.address ||
+            !newPackage.date ||
+            !newPackage.recipient ||
+            !newPackage.weight
+        ) {
+            throw new BadRequestException(
+                'Campos incompletos. Por favor, proporcione toda la información requerida.'
+            )
+        }
+
         const createdPackage = new this.packageModel({
             ...newPackage,
             status: PackageStatus.DISABLED,

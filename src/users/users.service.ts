@@ -1,4 +1,5 @@
 import {
+    BadRequestException,
     Injectable,
     NotFoundException,
     UnauthorizedException,
@@ -31,7 +32,27 @@ export class UsersService {
         return userResult
     }
 
+    async getUsersByEmail(userEmail: string): Promise<User | null> {
+        const userResult = await this.userModel
+            .findOne({ email: userEmail })
+            .exec()
+
+        return userResult
+    }
+
     async createUser(newUser: CreateUserDto): Promise<User> {
+        // Validación de campos requeridos
+        if (
+            !newUser.name ||
+            !newUser.lastName ||
+            !newUser.email ||
+            !newUser.password
+        ) {
+            throw new BadRequestException(
+                'Campos incompletos. Por favor, proporcione toda la información requerida.'
+            )
+        }
+
         const hashedPassword = bcrypt.hashSync(newUser.password, 10)
 
         const user = new this.userModel({
