@@ -11,7 +11,7 @@ import {
 import { UsersService } from './users.service'
 import { JWTtoken } from './users.token'
 import { CreateUserDto } from './users.dto'
-import { ApiResponse, ApiTags, ApiBody } from '@nestjs/swagger'
+import { ApiResponse, ApiTags } from '@nestjs/swagger'
 
 @Controller('users')
 @ApiTags('users')
@@ -34,23 +34,6 @@ export class UsersController {
     }
 
     @Post()
-    @ApiBody({
-        description: 'User creation example.',
-        type: CreateUserDto,
-        examples: {
-            default: {
-                summary: 'Body for user creation example.',
-                value: {
-                    name: 'Isidro',
-                    lastName: 'Merentiel',
-                    email: 'isim@gmail.com',
-                    password: '12345678',
-                    role: 'admin',
-                    declaration: true,
-                },
-            },
-        },
-    })
     @ApiResponse({
         status: 201,
         description: 'Creates and returns a new user.',
@@ -61,19 +44,6 @@ export class UsersController {
     }
 
     @Post('login')
-    @ApiBody({
-        description: 'User sign in example.',
-        type: CreateUserDto,
-        examples: {
-            default: {
-                summary: 'Body for user login example.',
-                value: {
-                    email: 'isidro@gmail.com',
-                    password: '12345678',
-                },
-            },
-        },
-    })
     @ApiResponse({ status: 200, description: 'Signs in an user.' })
     loginUser(@Body() credentials: { email: string; password: string }) {
         return this.usersService.login(credentials.email, credentials.password)
@@ -92,18 +62,6 @@ export class UsersController {
     }
 
     @Patch(':_id')
-    @ApiBody({
-        description: 'Updated user example.',
-        type: CreateUserDto,
-        examples: {
-            default: {
-                summary: 'Body for updating an user example.',
-                value: {
-                    email: 'matuidi2010@outlook.com',
-                },
-            },
-        },
-    })
     @ApiResponse({
         status: 201,
         description: 'Updates the specific user by id and returns it',
