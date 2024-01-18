@@ -5,8 +5,9 @@ import { AppModule } from 'src/app.module'
 import { getModelToken } from '@nestjs/mongoose'
 import { User } from 'src/models/User'
 import { Model } from 'mongoose'
+// import { CreateUserDto } from 'src/users/users.dto'
 
-describe('PackagesController', () => {
+describe('UsersController', () => {
     let app: INestApplication
     let mongooseModel: Model<User>
 
@@ -43,13 +44,64 @@ describe('PackagesController', () => {
         expect(postResponse.body).toBeInstanceOf(Object)
     })
 
+    // CASO CONTRARIO DE REGISTER
+    it('/user (POST) should return a status code 400 and an error message when attempting to create a new user without including the required fields.', async () => {
+        const postResponse = await request(app.getHttpServer())
+            .post('/users')
+            .send({
+                name: 'Miguel',
+                email: 'lospipppeeppslines@gmail.com',
+                password: 'bokita123',
+            })
+            .expect(400)
+
+        expect(postResponse.body.message).toEqual(
+            'Campos incompletos. Por favor, proporcione toda la información requerida.'
+        )
+    })
+
+    //CASO NEGATIVO DE REGISTER CON EMAIL YA EXITENTE
+    it('/user (POST) should return a status code 400 and an error message when attempting to create a new user including an already registered email.', async () => {
+        const postResponse = await request(app.getHttpServer())
+            .post('/users')
+            .send({
+                name: 'Miguel',
+                email: 'agustin@gmail.com',
+                lastName: 'Ferrando',
+                password: 'bokita123',
+            })
+            .expect(400)
+
+        expect(postResponse.body.message).toEqual(
+            'Ese email ya esta registrado'
+        )
+    })
+
     it('/users/login (POST) should return status code 201 and successfully login an user', async () => {
+        await request(app.getHttpServer())
+            .post(`/users`)
+            .send(newUser)
+            .expect(201)
+
         const postResponse = await request(app.getHttpServer())
             .post('/users/login')
             .send({ email: 'bestia@mail.com', password: 'bokita123' })
             .expect(201)
 
         expect(postResponse.body.user.email).toEqual('bestia@mail.com')
+    })
+
+    // CASO NEGATIVO DE LOGIN
+    it('/users/login (POST) should return status code 404 and error login a user', async () => {
+        const postResponse = await request(app.getHttpServer())
+            .post('/users/login')
+            .send({
+                email: 'bestia@mail.com',
+                password: 'alamaula23',
+            })
+            .expect(404)
+
+        expect(postResponse.body.message).toEqual('Credenciales incorrectas')
     })
 
     it('/users/user (GET):_id should return the specified user by id', async () => {
@@ -80,6 +132,11 @@ describe('PackagesController', () => {
     })
 
     it('/users/:token (GET) should return status code 201 and login the user with their existing token', async () => {
+        await request(app.getHttpServer())
+            .post(`/users`)
+            .send(newUser)
+            .expect(201)
+
         const postResponse = await request(app.getHttpServer())
             .post('/users/login')
             .send({ email: 'bestia@mail.com', password: 'bokita123' })
@@ -92,7 +149,7 @@ describe('PackagesController', () => {
         expect(getResponse.body.email).toEqual('bestia@mail.com')
     })
 
-    afterAll(async () => {
+    afterEach(async () => {
         const testUsers = await mongooseModel
             .find({ email: 'bestia@mail.com' })
             .exec()
@@ -100,6 +157,10 @@ describe('PackagesController', () => {
         for (const testUser of testUsers) {
             await mongooseModel.findByIdAndDelete(testUser._id).exec()
         }
+
+        // const testUsers2 = await mongooseModel
+        //     .find({ email: 'bestia@mail.com' })
+        //     .exec()
 
         await app.close()
     })
