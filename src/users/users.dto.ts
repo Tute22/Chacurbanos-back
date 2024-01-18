@@ -1,13 +1,5 @@
 import { UserRole } from './users.entity'
 import { ApiProperty } from '@nestjs/swagger'
-// export class CreateUserDto {
-//     name: string
-//     lastName: string
-//     email: string
-//     password: string
-//     role: UserRole.ADMIN | UserRole.DELIVERY
-//     declaration: boolean
-// }
 
 export class CreateUserDto {
     @ApiProperty({
@@ -46,4 +38,12 @@ export class CreateUserDto {
         example: true,
     })
     declaration: boolean
+
+    @ApiProperty({
+        description:
+            'Determines the date on which the user was disabled for incorrectly completing the declaration.',
+        example:
+            'Wed Jan 17 2024 16:40:11 GMT-0300 (hora estándar de Argentina)',
+    })
+    dateBadDeclaration: string
 }

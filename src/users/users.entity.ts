@@ -25,6 +25,7 @@ export class User {
     day: UserDay.PENDING | UserDay.IN_PROGRESS | UserDay.FINISH
     iconUrl: string
     declaration: boolean
+    dateBadDeclaration: string
 }
 
 export type UserPayload = {

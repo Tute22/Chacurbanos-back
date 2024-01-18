@@ -42,7 +42,7 @@ export class UsersController {
                 summary: 'Body for user creation example.',
                 value: {
                     name: 'Isidro',
-                    lastname: 'Merentiel',
+                    lastName: 'Merentiel',
                     email: 'isim@gmail.com',
                     password: '12345678',
                     role: 'admin',
