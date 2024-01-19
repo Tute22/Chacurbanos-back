@@ -13,6 +13,8 @@ import { UsersService } from './users.service'
 import { JWTtoken } from './users.token'
 import { CreateUserDto } from './users.dto'
 import { ApiResponse, ApiTags } from '@nestjs/swagger'
+import { resetPasswordEmail } from '../config/repositories/mailer'
+import * as bcrypt from 'bcryptjs'
 
 @Controller('users')
 @ApiTags('users')
@@ -97,6 +99,59 @@ export class UsersController {
             return result
         } else {
             return { message: 'Usuario no encontrado' }
+        }
+    }
+
+    @Post('reset-password')
+    @ApiResponse({ status: 200, description: 'Sends a password reset email.' })
+    async resetPassword(@Body() resetRequest: { email: string }) {
+        try {
+            if (!resetRequest.email) {
+                throw new BadRequestException('Campo email es requerido')
+            }
+
+            const user = await this.usersService.getUsersByEmail(
+                resetRequest.email
+            )
+
+            if (!user) {
+                throw new BadRequestException('Usuario no encontrado')
+            }
+
+            const payload = { id: user.id, email: user.email, role: user.role }
+            const resetToken = this.jwtToken.generateToken(payload)
+
+            resetPasswordEmail(user, resetToken)
+
+            return { message: 'Correo de recuperación enviado correctamente.' }
+        } catch (error) {
+            throw new BadRequestException(error.message)
+        }
+    }
+
+    @Patch('set-password/:registerToken')
+    @ApiResponse({ status: 200, description: 'Sets a new password.' })
+    async setPassword(
+        @Param('registerToken') registerToken: string,
+        @Body() setPasswordRequest: { password: string }
+    ) {
+        try {
+            const decoded = this.jwtToken.validateToken(registerToken)
+
+            const { id } = decoded
+
+            const hashedPassword = await bcrypt.hash(
+                setPasswordRequest.password,
+                10
+            )
+
+            const userData = { password: hashedPassword }
+
+            const result = await this.usersService.updateUser(id, userData)
+
+            return result
+        } catch (error) {
+            throw new BadRequestException(error.message)
         }
     }
 }

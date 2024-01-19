@@ -29,7 +29,7 @@ export class User {
 }
 
 export type UserPayload = {
-    id: number
+    id: string
     email: string
     role: UserRole
 }
