@@ -61,6 +61,7 @@ export class UsersService {
             status: UserStatus.ENABLED,
             day: UserDay.PENDING,
             declaration: newUser.declaration || false,
+            dateBadDeclaration: '',
         })
 
         return await user.save()
