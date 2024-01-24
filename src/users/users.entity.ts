@@ -16,6 +16,7 @@ export enum UserDay {
 
 export class User {
     id: string
+    iconUrl: string
     name: string
     lastName: string
     email: string
@@ -23,7 +24,6 @@ export class User {
     role: UserRole.DELIVERY | UserRole.ADMIN
     status: UserStatus.ENABLED | UserStatus.DISABLED
     day: UserDay.PENDING | UserDay.IN_PROGRESS | UserDay.FINISH
-    iconUrl: string
     declaration: boolean
     dateBadDeclaration: string
 }
