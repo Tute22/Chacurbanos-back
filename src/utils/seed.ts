@@ -14,6 +14,7 @@ async function seed() {
 
     // Seed Users
     const user1: CreateUserDto = {
+        iconURL: '',
         name: 'Agustín',
         lastName: 'Sandoval',
         email: 'agustin@gmail.com',
@@ -24,6 +25,7 @@ async function seed() {
     }
 
     const user2: CreateUserDto = {
+        iconURL: '',
         name: 'Fiama',
         lastName: 'Talavera',
         email: 'fiama@gmail.com',
@@ -34,6 +36,7 @@ async function seed() {
     }
 
     const user3: CreateUserDto = {
+        iconURL: '',
         name: 'Isidro',
         lastName: 'Molina',
         email: 'isidro@gmail.com',
@@ -44,6 +47,7 @@ async function seed() {
     }
 
     const user4: CreateUserDto = {
+        iconURL: '',
         name: 'Martin',
         lastName: 'Ferrando',
         email: 'martin@gmail.com',
@@ -54,6 +58,7 @@ async function seed() {
     }
 
     const user5: CreateUserDto = {
+        iconURL: '',
         name: 'Gastón',
         lastName: 'Rabinovich',
         email: 'gaston@gmail.com',

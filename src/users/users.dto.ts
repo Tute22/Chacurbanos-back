@@ -3,6 +3,13 @@ import { ApiProperty } from '@nestjs/swagger'
 
 export class CreateUserDto {
     @ApiProperty({
+        description: "The user's icon.",
+        example:
+            'https://www.debate.com.uy/__export/1666839197851/sites/debate/img/2022/10/26/lionel-messi-argentina-2022-1_crop1666838398572.jpg_423682103.jpg',
+    })
+    iconURL: string
+
+    @ApiProperty({
         description: "The user's name.",
         example: 'Martín',
     })
@@ -47,48 +54,3 @@ export class CreateUserDto {
     })
     dateBadDeclaration: string
 }
-
-// export class CreateUserDto {
-//     @ApiProperty({
-//       description: "The user's name.",
-//       example: 'Martín',
-//     })
-//
-//     name: string;
-
-//     @ApiProperty({
-//       description: "The user's last name.",
-//       example: 'Palermo',
-//     })
-//
-//     lastName: string;
-
-//     @ApiProperty({
-//       description: "The user's email.",
-//       example: 'facha@gmail.com',
-//     })
-//
-//     @IsEmail()
-//     email: string;
-
-//     @ApiProperty({
-//       description: "The user's hashed password.",
-//       example: '$2a$10$4gG6IZkaPbFxGLjL2c3WKOdDXNH5mciFXml/F7SrNJqgsgqjRxrUy',
-//     })
-//
-//     password: string;
-
-//     @ApiProperty({
-//       description: "The user's role.",
-//       example: 'delivery',
-//     })
-//
-//     role: UserRole.ADMIN | UserRole.DELIVERY;
-
-//     @ApiProperty({
-//       description: 'Determines if the user agrees with the sworn declaration.',
-//       example: true,
-//     })
-//     @IsBoolean()
-//     declaration: boolean;
-//   }
