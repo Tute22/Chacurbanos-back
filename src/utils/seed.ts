@@ -76,17 +76,19 @@ async function seed() {
 
     // Seed Packages
     const package1: CreatePackagesDto = {
-        address: '123 Main St',
+        address: 'Bokeeee',
         recipient: 'Alice',
         weight: 5,
         date: new Date(),
+        deliveredBy: '',
     }
 
     const package2: CreatePackagesDto = {
-        address: '456 Oak St',
+        address: 'Bokita12',
         recipient: 'Bob',
         weight: 3,
         date: new Date(),
+        deliveredBy: '',
     }
 
     await packagesService.createPackage(package1)
