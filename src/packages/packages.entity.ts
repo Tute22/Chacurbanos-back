@@ -3,6 +3,7 @@ export enum PackageStatus {
     IN_PROGRESS = 'in progress',
     DELIVERED = 'delivered',
     DISABLED = 'disabled',
+    DELIVERY = '',
 }
 
 export class Package {
@@ -11,6 +12,7 @@ export class Package {
     recipient: string
     weight: string
     date: Date
+    deliveredBy: string
     status:
         | PackageStatus.DISABLED
         | PackageStatus.IN_PROGRESS

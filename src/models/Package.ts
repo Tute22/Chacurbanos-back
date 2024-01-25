@@ -17,6 +17,9 @@ export class Package {
 
     @Prop({ default: PackageStatus.DISABLED })
     status: PackageStatus
+
+    @Prop({ default: PackageStatus.DELIVERY })
+    deliveredBy: string
 }
 
 export const PackageSchema = SchemaFactory.createForClass(Package)

@@ -26,4 +26,10 @@ export class CreatePackagesDto {
         type: Date,
     })
     date: Date
+
+    @ApiProperty({
+        description: 'User ID to identify their packages',
+        example: 'uniqueUserId',
+    })
+    deliveredBy: string
 }

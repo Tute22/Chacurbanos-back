@@ -43,6 +43,7 @@ export class PackagesService {
         const createdPackage = new this.packageModel({
             ...newPackage,
             status: PackageStatus.DISABLED,
+            deliveredBy: '',
         })
 
         return await createdPackage.save()

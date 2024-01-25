@@ -65,9 +65,10 @@ export class PackagesController {
             const properties = [
                 'address',
                 'recipient',
-                'weigth',
+                'weight',
                 'date',
                 'status',
+                'deliveredBy',
             ]
             const packagePropertie = Object.keys(updatedPackage)[0]
 
@@ -86,7 +87,6 @@ export class PackagesController {
                 packageId,
                 updatedPackage
             )
-
             return result
         } catch (error) {
             throw new BadRequestException(error.message)
