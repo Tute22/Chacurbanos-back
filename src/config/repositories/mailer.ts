@@ -1,16 +1,17 @@
 import * as nodemailer from 'nodemailer'
+import { ConfigModule } from '@nestjs/config'
+
+ConfigModule.forRoot()
 
 const transporter = nodemailer.createTransport({
     host: 'smtp.gmail.com',
     port: 587,
     secure: false,
     auth: {
-        user: 'fastdeliverychacurbanos@gmail.com',
-        pass: 'darq kpbq qoxp qtpq',
+        user: process.env.SMTP_USER,
+        pass: process.env.SMTP_PASS,
     },
 })
-
-const originUrl = 'http://localhost:3000'
 
 export const resetPasswordEmail = (user, resetToken) => {
     const emailHTML = `
@@ -50,14 +51,14 @@ export const resetPasswordEmail = (user, resetToken) => {
             <div class="email-container">
                 <h2 class="email-header">Hola ${user.name}!</h2>
                 <p class="email-body">Presioná el siguiente botón para restablecer tu contraseña.</p>
-                <a href="${originUrl}/confirm-user/${resetToken}" class="reset-button" style="background-color: #F4C455; color: #1B1B1B !important; padding: 15px 30px; text-decoration: none; border: none; border-radius: 30px; display: inline-block; margin-top: 15px; font-weight: bold; font-size: 16px; text-align: center;">Restablecer Contraseña</a>
+                <a href="${process.env.ORIGIN_URL}/confirm-user/${resetToken}" class="reset-button" style="background-color: #F4C455; color: #1B1B1B !important; padding: 15px 30px; text-decoration: none; border: none; border-radius: 30px; display: inline-block; margin-top: 15px; font-weight: bold; font-size: 16px; text-align: center;">Restablecer Contraseña</a>
                 <div class="email-footer"><b>Equipo de Fast Delivery!</b></div>
             </div>
         </body>
     </html>`
 
     transporter.sendMail({
-        from: 'fastdeliverychacurbanos@gmail.com',
+        from: process.env.SMTP_USER,
         to: user.email,
         subject: 'Recuperación de Contraseña en Fast Delivery',
         html: emailHTML,
