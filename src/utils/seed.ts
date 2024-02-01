@@ -76,16 +76,40 @@ async function seed() {
 
     // Seed Packages
     const package1: CreatePackagesDto = {
-        address: 'Bokeeee',
-        recipient: 'Alice',
+        address: 'José Hernández 166, H3500 Resistencia, Chaco',
+        recipient: 'Barbara',
         weight: 5,
         date: new Date(),
         deliveredBy: '',
     }
 
     const package2: CreatePackagesDto = {
-        address: 'Bokita12',
-        recipient: 'Bob',
+        address: 'Av. Wilde 146, H3500BTO Resistencia, Chaco',
+        recipient: 'Alfredo',
+        weight: 3,
+        date: new Date(),
+        deliveredBy: '',
+    }
+
+    const package3: CreatePackagesDto = {
+        address: 'C. Monteagudo 1465, H3508EHN Resistencia, Chaco',
+        recipient: 'Juan',
+        weight: 3,
+        date: new Date(),
+        deliveredBy: '',
+    }
+
+    const package4: CreatePackagesDto = {
+        address: 'Arturo Illia 644, H3500AKH Resistencia, Chaco',
+        recipient: 'Estela',
+        weight: 3,
+        date: new Date(),
+        deliveredBy: '',
+    }
+
+    const package5: CreatePackagesDto = {
+        address: 'Juan Domingo Perón 1451, H3506KLO Resistencia, Chaco',
+        recipient: 'Luis',
         weight: 3,
         date: new Date(),
         deliveredBy: '',
@@ -93,6 +117,9 @@ async function seed() {
 
     await packagesService.createPackage(package1)
     await packagesService.createPackage(package2)
+    await packagesService.createPackage(package3)
+    await packagesService.createPackage(package4)
+    await packagesService.createPackage(package5)
 
     console.log('Seed completed.')
 
