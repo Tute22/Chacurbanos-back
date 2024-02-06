@@ -46,8 +46,14 @@ cd Chacurbanos-back
 # Install dependencies
 npm install
 
+# At the root, create a .env file containing the following:
+MONGO_URI = your_mongo_URI
+
+# Seed the database
+npm run seed
+
 # Start the application
-npm run dev
+npm start
 
 # Dockerize
 docker build -t chacurbanos-back .
@@ -55,6 +61,11 @@ docker-compose up --build
 
 # Start the application with Docker
 docker-compose up
+
+#----------------------------------------------------------
+
+# Run the tests
+npm test
 ```
 
 ## Functionalities
@@ -71,7 +82,7 @@ docker-compose up
 
 ## Contact
 
-If you have any questions or need more information, do not hesitate to contact us through [Contact Mail](mailto:contacto@chacurbanos.com).
+If you have any questions or need more information, do not hesitate to contact us through [Contact Mail](mailto:fastdeliverychacurbanos@gmail.com).
 ---
 
 ## Developers
