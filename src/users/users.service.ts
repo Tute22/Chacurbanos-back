@@ -57,7 +57,6 @@ export class UsersService {
 
         const user = new this.userModel({
             ...newUser,
-            iconUrl: '',
             password: hashedPassword,
             status: UserStatus.ENABLED,
             day: UserDay.PENDING,
