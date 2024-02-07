@@ -7,7 +7,7 @@ export class CreateUserDto {
         example:
             'https://www.debate.com.uy/__export/1666839197851/sites/debate/img/2022/10/26/lionel-messi-argentina-2022-1_crop1666838398572.jpg_423682103.jpg',
     })
-    iconURL: string
+    iconUrl: string
 
     @ApiProperty({
         description: "The user's name.",
