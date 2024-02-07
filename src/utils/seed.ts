@@ -14,7 +14,8 @@ async function seed() {
 
     // Seed Users
     const user1: CreateUserDto = {
-        iconURL: '',
+        iconUrl:
+            'https://res.cloudinary.com/dpbr1u8z5/image/upload/v1707343673/mskdfdokbbjkgfuoxlnl.png',
         name: 'Agustín',
         lastName: 'Sandoval',
         email: 'agustin@gmail.com',
@@ -25,7 +26,8 @@ async function seed() {
     }
 
     const user2: CreateUserDto = {
-        iconURL: '',
+        iconUrl:
+            'https://res.cloudinary.com/dpbr1u8z5/image/upload/v1707343519/aucftjbreczdi6jy4rzy.png',
         name: 'Fiama',
         lastName: 'Talavera',
         email: 'fiama@gmail.com',
@@ -36,7 +38,8 @@ async function seed() {
     }
 
     const user3: CreateUserDto = {
-        iconURL: '',
+        iconUrl:
+            'https://res.cloudinary.com/dpbr1u8z5/image/upload/v1707343726/b5abauyxyhk1eajv26sk.png',
         name: 'Isidro',
         lastName: 'Molina',
         email: 'isidro@gmail.com',
@@ -47,7 +50,8 @@ async function seed() {
     }
 
     const user4: CreateUserDto = {
-        iconURL: '',
+        iconUrl:
+            'https://res.cloudinary.com/dpbr1u8z5/image/upload/v1707343445/gxfrkfjexe5kaazv9gxd.png',
         name: 'Martin',
         lastName: 'Ferrando',
         email: 'martin@gmail.com',
@@ -58,7 +62,8 @@ async function seed() {
     }
 
     const user5: CreateUserDto = {
-        iconURL: '',
+        iconUrl:
+            'https://res.cloudinary.com/dpbr1u8z5/image/upload/v1707343861/ebggzcls8hp6glvmbnrh.png',
         name: 'Gastón',
         lastName: 'Rabinovich',
         email: 'gaston@gmail.com',
