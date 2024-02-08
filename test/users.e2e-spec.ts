@@ -96,6 +96,8 @@ describe('UsersOverflow', () => {
                     email: 'agustin@gmail.com',
                     lastName: 'Ferrando',
                     password: 'bokita123',
+                    iconUrl:
+                        'https://www.google.com/url?sa=i&url=https%3A%2F%2Fwww.elgrafico.com.ar%2Farticulo%2Fconmebol-libertadores%2F70899%2Fedinson-cavani-es-el-partido-de-mi-vida&psig=AOvVaw10LWCEUUd1uIr6f_We5BaS&ust=1707519002395000&source=images&cd=vfe&opi=89978449&ved=0CBIQjRxqFwoTCPjC9o7qnIQDFQAAAAAdAAAAABAE',
                 })
                 .expect(400)
 
