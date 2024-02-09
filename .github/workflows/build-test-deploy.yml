@@ -60,18 +60,3 @@ jobs:
         run: |
           docker build -t tute22/chacurbanos-back:latest .
           docker push tute22/chacurbanos-back:latest
-
-  deploy-to-lightsail:
-    needs: docker-build-and-push
-    runs-on: ubuntu-latest
-    steps:
-      - name: Configure AWS Credentials
-        uses: aws-actions/configure-aws-credentials@v1
-        with:
-          role-to-assume: ${{ secrets.AWS_ARN_OICN_ACCESS }}
-          role-session-name: GithubActions
-          aws-region: us-east-1
-
-      - name: Deploy to Lightsail
-        run: |
-          aws lightsail push-container-image --service-name fast-delivery-chacurbanos --label fast-delivery-chacurbanos --image tute22/chacurbanos-back:latest
